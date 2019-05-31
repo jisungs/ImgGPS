@@ -5,6 +5,7 @@ const express = require("express");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const ExifImage = require('exif');
+const date = require(__dirname + "/date.js");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+const gpsDataSample = [11,12,13];
 var gpsData = [];
 
 app.post('/map', function(req, res){
@@ -20,6 +22,10 @@ app.post('/map', function(req, res){
 });
 
 app.get('/', function(req, res){
+
+  const day = date.getDate();
+
+  res.render("list", {listTitle: day, newListItems: gpsDataSample});
 
   res.send(gpsData);
 
