@@ -21,11 +21,9 @@ var gpsData = [];
 app.get('/', function(req, res){
 
   const day = date.getDate();
-  res.render("list", {listTitle: day, newListItems: gpsDataSample});
-
-});
-
-app.post('/map', function(req, res){
+  //res.render("list", {listTitle: day, newListItems: gpsDataSample});
+  var lat = "";
+  res.render('list');
 
   try {
      new ExifImage({ image : 'img/IMG_9826.JPG' }, function (error, exifData) {
@@ -33,11 +31,17 @@ app.post('/map', function(req, res){
              console.log('Error: '+error.message);
          else
              console.log(exifData.gps.GPSLatitude);
+
+             lat = exifData.gps.GPSLatitude;
               // Do something with your data!
      });
   } catch (error) {
      console.log('Error: ' + error.message);
   }
+
+});
+
+app.post('/map', function(req, res){
 });
 
 
