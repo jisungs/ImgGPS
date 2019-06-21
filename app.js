@@ -22,23 +22,24 @@ app.get('/', function(req, res){
 
   const day = date.getDate();
   //res.render("list", {listTitle: day, newListItems: gpsDataSample});
-  var lat = "";
-  res.render('list');
+  var latArray = [];
 
   try {
      new ExifImage({ image : 'img/IMG_9826.JPG' }, function (error, exifData) {
          if (error)
              console.log('Error: '+error.message);
          else
-             console.log(exifData.gps.GPSLatitude);
-
+            // console.log(exifData.gps.GPSLatitude);
              lat = exifData.gps.GPSLatitude;
+             latArray.push(lat);
               // Do something with your data!
      });
   } catch (error) {
      console.log('Error: ' + error.message);
   }
 
+  res.render('list',{GPSitem:latArray});
+ console.log(latArray);
 });
 
 app.post('/map', function(req, res){
