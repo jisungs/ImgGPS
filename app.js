@@ -8,8 +8,10 @@ const ExifImage = require('exif');
 const date = require(__dirname + "/date.js");
 const ejsLint = require('ejs-lint');
 
+
 const app = express();
 
+app.use("/", express.static(__dirname + '/'));
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -39,6 +41,7 @@ app.get('/', function(req, res){
   }
 
   res.render('list',{GPSitem:latArray});
+
  console.log(latArray);
 });
 
