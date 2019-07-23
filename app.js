@@ -17,9 +17,6 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-const gpsDataSample = [11,12,13];
-var gpsData = [];
-
 app.get('/', function(req, res){
 
   const day = date.getDate();
@@ -32,8 +29,9 @@ app.get('/', function(req, res){
              console.log('Error: '+error.message);
          else
             // console.log(exifData.gps.GPSLatitude);
-             lat = exifData.gps.GPSLatitude;
+            var lat = exifData.gps.GPSLatitude;
              latArray.push(lat);
+             console.log(lat);
               // Do something with your data!
      });
   } catch (error) {
