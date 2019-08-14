@@ -26,11 +26,10 @@ app.get('/', function(req, res){
   try {
      new ExifImage({ image : 'img/IMG_9826.JPG' }, function (error, exifData) {
          if (error)
-             console.log('Error: '+error.message);
+             console.log('Error: '+ error.message);
          else
             // console.log(exifData.gps.GPSLatitude);
             var lat = exifData.gps.GPSLatitude;
-             latArray.push(lat);
              console.log(lat);
               // Do something with your data!
      });
@@ -38,12 +37,12 @@ app.get('/', function(req, res){
      console.log('Error: ' + error.message);
   }
 
-  res.render('list',{GPSitem:latArray});
+  res.render('list',{GPSitem : String(latArray[0])});
 
- console.log(latArray);
 });
 
 app.post('/map', function(req, res){
+
 });
 
 
