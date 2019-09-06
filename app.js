@@ -21,7 +21,7 @@ app.get('/', function(req, res){
 
   const day = date.getDate();
   //res.render("list", {listTitle: day, newListItems: gpsDataSample});
-  var latArray = [];
+  var latArray = [12];
 
   try {
      new ExifImage({ image : 'img/IMG_9826.JPG' }, function (error, exifData) {
@@ -30,14 +30,15 @@ app.get('/', function(req, res){
          else
             // console.log(exifData.gps.GPSLatitude);
             var lat = exifData.gps.GPSLatitude;
-             console.log(lat);
+            latArray.push(lat)
+            console.log(lat)
               // Do something with your data!
      });
   } catch (error) {
      console.log('Error: ' + error.message);
   }
 
-  res.render('list',{GPSitem : String(latArray[0])});
+  res.render('list',{GPSitem : String(latarray.forEach(function()))});
 
 });
 
